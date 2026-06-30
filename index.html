@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mwea Farm | Bespoke Contract Farming & Stevia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --earth-900: #1a140f;
+            --earth-800: #2d241c;
+            --forest-800: #1e3a1a;
+            --forest-600: #2d4f1e;
+            --clay-500: #8b5e3c;
+            --solar-500: #eab308;
+            --bone-100: #fdfbf7;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bone-100);
+            color: var(--earth-900);
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        .nav-scrolled {
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .tab-active {
+            border-bottom: 3px solid var(--forest-600);
+            color: var(--forest-600);
+        }
+        .dot-pattern {
+            background-image: radial-gradient(var(--clay-500) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-emerald-800 rounded-full flex items-center justify-center text-white font-bold">M</div>
+                <span class="text-xl font-bold tracking-tight text-emerald-900">MWEA FARM</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
+                <a href="#about" class="hover:text-emerald-700 transition">About Us</a>
+                <a href="#capabilities" class="hover:text-emerald-700 transition">Capabilities</a>
+                <a href="#sustainability" class="hover:text-emerald-700 transition">Sustainability</a>
+                <a href="#contact" class="bg-emerald-800 text-white px-5 py-2 rounded-full hover:bg-emerald-700 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-emerald-900" id="mobile-menu-btn">
+                <span class="text-2xl">☰</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-bone-100 via-transparent to-transparent z-10"></div>
+            <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">
+                <div class="text-center opacity-40">
+                    <div class="text-6xl">☼</div>
+                    <p class="uppercase tracking-widest mt-4">Fertile Mwea Landscape</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="relative z-20 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2">
+            <div class="space-y-8">
+                <span class="inline-block px-4 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase tracking-widest">Now Accepting 2026 Contracts</span>
+                <h1 class="text-5xl md:text-7xl leading-tight text-emerald-900">
+                    Sun-Powered. <br>
+                    <span class="italic text-clay-500">Hand-Cultivated.</span><br>
+                    Grown to Specification.
+                </h1>
+                <p class="text-lg md:text-xl text-stone-700 max-w-lg leading-relaxed">
+                    Located in the heart of Mwea, we provide bespoke contract farming and premium stevia cultivation for forward-thinking agricultural supply chains.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-emerald-800 text-white px-8 py-4 rounded-lg font-bold text-center hover:bg-emerald-700 transition shadow-lg shadow-emerald-900/20">Discuss a Custom Contract</a>
+                    <a href="#about" class="border-2 border-emerald-800 text-emerald-800 px-8 py-4 rounded-lg font-bold text-center hover:bg-emerald-50 transition">Learn Our Methods</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="bg-white border-y border-stone-200 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex items-center space-x-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl group-hover:bg-emerald-100 transition">🌿</div>
+                    <div>
+                        <p class="text-xs uppercase font-bold text-stone-500">Care Type</p>
+                        <p class="font-bold text-emerald-900">100% Hand-Tended</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl group-hover:bg-yellow-100 transition">☀</div>
+                    <div>
+                        <p class="text-xs uppercase font-bold text-stone-500">Energy Source</p>
+                        <p class="font-bold text-emerald-900">Solar Operations</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl group-hover:bg-blue-100 transition">📝</div>
+                    <div>
+                        <p class="text-xs uppercase font-bold text-stone-500">B2B Service</p>
+                        <p class="font-bold text-emerald-900">Custom Contracts</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 group">
+                    <div class="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl group-hover:bg-orange-100 transition">📍</div>
+                    <div>
+                        <p class="text-xs uppercase font-bold text-stone-500">Origin</p>
+                        <p class="font-bold text-emerald-900">Cultivated in Mwea</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section / Interactive Philosophy -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 dot-pattern"></div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="bg-stone-300 w-full aspect-square rounded-2xl shadow-2xl relative overflow-hidden flex items-center justify-center">
+                        <span class="text-stone-500 italic uppercase tracking-tighter opacity-50">Authentic Mwea Farm Photography</span>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <h2 class="text-4xl md:text-5xl text-emerald-900 leading-tight">Precision Care Through <br>Human Touch.</h2>
+                    
+                    <div class="flex space-x-6 border-b border-stone-200">
+                        <button onclick="switchTab('philosophy')" id="tab-philosophy" class="pb-4 text-sm font-bold uppercase tracking-widest tab-active">Philosophy</button>
+                        <button onclick="switchTab('methods')" id="tab-methods" class="pb-4 text-sm font-bold uppercase tracking-widest text-stone-400">Methods</button>
+                    </div>
+
+                    <div id="content-philosophy" class="space-y-6">
+                        <p class="text-lg leading-relaxed text-stone-700">
+                            Great agriculture isn't just about volume; it's about attention to detail. Founded in the fertile soils of Mwea, we believe that the highest quality crops require a bespoke approach.
+                        </p>
+                        <p class="text-lg leading-relaxed text-stone-700">
+                            While the industry rushes toward heavy machinery, we rely on dedicated, hand-cultivated care to ensure maximum leaf integrity and plant health.
+                        </p>
+                    </div>
+
+                    <div id="content-methods" class="hidden space-y-6">
+                        <p class="text-lg leading-relaxed text-stone-700">
+                            Our "Raw Manpower" approach is a deliberate quality choice. By inspecting every plant daily, we catch pests earlier and harvest at the exact moment of peak potency.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
+                                <span class="font-medium">No mechanical leaf bruising during harvest</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
+                                <span class="font-medium">Specific pruning per plant requirements</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
+                                <span class="font-medium">Integrated pest management via human scouting</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Grid -->
+    <section id="capabilities" class="py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl text-emerald-900">What We Offer</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto italic">Bridging traditional manual care with future-focused sustainability.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-2xl shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-4xl mb-6">🌿</div>
+                    <h3 class="text-2xl mb-4 text-emerald-900">Premium Stevia</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        We specialize in high-yield, premium stevia, carefully hand-harvested to protect leaf quality and maximize sweetening compounds. Ideal for bulk B2B procurement.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 rounded-2xl shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-4xl mb-6">🤝</div>
+                    <h3 class="text-2xl mb-4 text-emerald-900">Custom Contract Farming</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Need a specific crop grown to exact specifications? We dedicate our acreage and resources to cultivate exactly what your supply chain demands.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 rounded-2xl shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-4xl mb-6">♻️</div>
+                    <h3 class="text-2xl mb-4 text-emerald-900">Sustainable Supply</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Meet your corporate sustainability goals. Our operations run on clean solar power, offering a low-carbon, ethically managed agricultural footprint.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Dashboard (Interactive Data) -->
+    <section id="sustainability" class="py-24 bg-emerald-900 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-800 rounded-full blur-3xl opacity-50 -mr-48 -mt-48"></div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl mb-6">Rooted in Tradition, <br>Powered by the Future.</h2>
+                <p class="text-emerald-100/70 max-w-2xl mx-auto">Our foundational years are built on tactile, manual crop care—allowing us to master our soil and crops at a granular level.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                    <h3 class="text-xl font-bold mb-6 flex items-center space-x-2">
+                        <span>⚡</span>
+                        <span>Energy Infrastructure Profile</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-sm text-emerald-200/60 italic text-center">We utilize a 100% off-grid solar array for all irrigation and processing needs.</p>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                    <h3 class="text-xl font-bold mb-6 flex items-center space-x-2">
+                        <span>🍃</span>
+                        <span>Hand-Tending Quality Impact</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-sm text-emerald-200/60 italic text-center">Comparison of leaf integrity: Hand-harvested vs. Standard Mechanical methods.</p>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <div class="inline-grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div>
+                        <p class="text-4xl font-bold text-solar-500">100%</p>
+                        <p class="text-sm uppercase tracking-widest mt-2 opacity-70">Solar Powered</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-solar-500">0%</p>
+                        <p class="text-sm uppercase tracking-widest mt-2 opacity-70">Mechanical Bruising</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-solar-500">Bespoke</p>
+                        <p class="text-sm uppercase tracking-widest mt-2 opacity-70">Contract Terms</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" class="py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="bg-stone-100 p-12 md:p-20 rounded-[3rem] space-y-8 relative overflow-hidden">
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-200 rounded-full opacity-20"></div>
+                <h2 class="text-4xl md:text-6xl text-emerald-900">Ready to secure your supply chain?</h2>
+                <p class="text-lg text-stone-600 max-w-xl mx-auto leading-relaxed">
+                    Whether you are looking for bulk premium stevia or have a specific crop you need contract-grown, our team in Mwea is ready to deliver.
+                </p>
+                <div class="pt-8">
+                    <button class="bg-emerald-800 text-white px-12 py-5 rounded-full text-xl font-bold hover:bg-emerald-700 transition shadow-xl shadow-emerald-900/20">
+                        Contact Our Agronomy Team
+                    </button>
+                </div>
+                <div class="pt-8 text-stone-400 text-sm flex justify-center items-center space-x-6">
+                    <span>Mwea, Kenya</span>
+                    <span>•</span>
+                    <span>Solar-Powered Operations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-stone-200 text-stone-500 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p>&copy; 2026 Mwea Farm Operations. All rights reserved.</p>
+            <div class="flex space-x-8">
+                <a href="#" class="hover:text-emerald-900">Privacy Policy</a>
+                <a href="#" class="hover:text-emerald-900">Supply Chain Ethics</a>
+                <a href="#" class="hover:text-emerald-900">Certifications</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        };
+
+        // Tab Switching Logic
+        function switchTab(tab) {
+            const philTab = document.getElementById('tab-philosophy');
+            const methTab = document.getElementById('tab-methods');
+            const philContent = document.getElementById('content-philosophy');
+            const methContent = document.getElementById('content-methods');
+
+            if (tab === 'philosophy') {
+                philTab.classList.add('tab-active');
+                philTab.classList.remove('text-stone-400');
+                methTab.classList.remove('tab-active');
+                methTab.classList.add('text-stone-400');
+                philContent.classList.remove('hidden');
+                methContent.classList.add('hidden');
+            } else {
+                methTab.classList.add('tab-active');
+                methTab.classList.remove('text-stone-400');
+                philTab.classList.remove('tab-active');
+                philTab.classList.add('text-stone-400');
+                methContent.classList.remove('hidden');
+                philContent.classList.add('hidden');
+            }
+        }
+
+        // Charts Initialization
+        function initCharts() {
+            const ctxEnergy = document.getElementById('energyChart').getContext('2d');
+            new Chart(ctxEnergy, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Solar Power', 'Grid / Fossil Fuel'],
+                    datasets: [{
+                        data: [100, 0],
+                        backgroundColor: ['#eab308', '#2d241c'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: { color: '#ffffff', padding: 20 }
+                        }
+                    }
+                }
+            });
+
+            const ctxQuality = document.getElementById('qualityChart').getContext('2d');
+            new Chart(ctxQuality, {
+                type: 'bar',
+                data: {
+                    labels: ['Leaf Integrity', 'Purity Rate', 'Terpene Profile', 'ESG Score'],
+                    datasets: [{
+                        label: 'Hand-Cultivated (Mwea)',
+                        data: [98, 99, 95, 100],
+                        backgroundColor: '#4ade80'
+                    }, {
+                        label: 'Standard Mechanical',
+                        data: [65, 80, 75, 40],
+                        backgroundColor: '#94a3b8'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#ffffff' },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', initCharts);
+    </script>
+</body>
+</html>
