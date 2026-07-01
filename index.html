@@ -12,8 +12,8 @@
         :root {
             --earth-900: #1a140f;
             --earth-800: #2d241c;
-            --forest-800: #1e3a1a;
-            --forest-600: #2d4f1e;
+            --forest-800: #166534;
+            --forest-600: #16a34a;
             --clay-500: #8b5e3c;
             --solar-500: #eab308;
             --bone-100: #fdfbf7;
@@ -275,12 +275,59 @@
                 <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
                     <h3 class="text-xl font-bold mb-6 flex items-center space-x-2">
                         <span>🍃</span>
-                        <span>Hand-Tending Quality Impact</span>
+                        <span>Hand-Tending vs. Mechanical</span>
                     </h3>
-                    <div class="chart-container">
-                        <canvas id="qualityChart"></canvas>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-bold text-emerald-300">Leaf Integrity</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <div class="flex-1 bg-emerald-800/50 p-3 rounded-lg border border-emerald-500/30">
+                                    <span class="block text-xs uppercase text-emerald-400 mb-1">Hand-Harvested</span>
+                                    <span class="text-sm">Clean selection prevents cellular bruising.</span>
+                                </div>
+                                <div class="flex-1 bg-stone-800/50 p-3 rounded-lg border border-stone-600/30">
+                                    <span class="block text-xs uppercase text-stone-400 mb-1">Mechanical</span>
+                                    <span class="text-sm">Shear-cutting causes oxidation & bruising.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-bold text-emerald-300">Purity Rate</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <div class="flex-1 bg-emerald-800/50 p-3 rounded-lg border border-emerald-500/30">
+                                    <span class="block text-xs uppercase text-emerald-400 mb-1">Hand-Harvested</span>
+                                    <span class="text-sm">Visual sorting avoids weeds and field debris.</span>
+                                </div>
+                                <div class="flex-1 bg-stone-800/50 p-3 rounded-lg border border-stone-600/30">
+                                    <span class="block text-xs uppercase text-stone-400 mb-1">Mechanical</span>
+                                    <span class="text-sm">Non-selective; gathers weeds and stems.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-bold text-emerald-300">Chemical Profile</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <div class="flex-1 bg-emerald-800/50 p-3 rounded-lg border border-emerald-500/30">
+                                    <span class="block text-xs uppercase text-emerald-400 mb-1">Hand-Harvested</span>
+                                    <span class="text-sm">Selective picking at peak glycoside maturity.</span>
+                                </div>
+                                <div class="flex-1 bg-stone-800/50 p-3 rounded-lg border border-stone-600/30">
+                                    <span class="block text-xs uppercase text-stone-400 mb-1">Mechanical</span>
+                                    <span class="text-sm">Clear-cut based on field averages.</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="mt-6 text-sm text-emerald-200/60 italic text-center">Comparison of leaf integrity: Hand-harvested vs. Standard Mechanical methods.</p>
+
                 </div>
             </div>
 
@@ -303,6 +350,7 @@
         </div>
     </section>
 
+    <!-- Contact CTA -->
     <section id="contact" class="py-24">
         <div class="max-w-5xl mx-auto px-6 text-center">
             <div class="bg-stone-100 p-12 md:p-20 rounded-[3rem] space-y-8 relative overflow-hidden">
@@ -325,6 +373,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="py-12 border-t border-stone-200 text-stone-500 text-sm">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p>&copy; 2024 Taji Glen Farms Operations. All rights reserved.</p>
@@ -392,45 +441,6 @@
                             display: true,
                             position: 'bottom',
                             labels: { color: '#ffffff', padding: 20 }
-                        }
-                    }
-                }
-            });
-
-            const ctxQuality = document.getElementById('qualityChart').getContext('2d');
-            new Chart(ctxQuality, {
-                type: 'bar',
-                data: {
-                    labels: ['Leaf Integrity', 'Purity Rate', 'Terpene Profile', 'ESG Score'],
-                    datasets: [{
-                        label: 'Hand-Cultivated (Mwea)',
-                        data: [98, 99, 95, 100],
-                        backgroundColor: '#4ade80'
-                    }, {
-                        label: 'Standard Mechanical',
-                        data: [65, 80, 75, 40],
-                        backgroundColor: '#94a3b8'
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: { color: '#ffffff' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#ffffff' },
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: { color: '#ffffff' }
                         }
                     }
                 }
