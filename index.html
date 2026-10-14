@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taji Glen Farms | Bespoke Contract Farming & Stevia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <meta name="description" content="Taji Glen Farms offers bespoke contract farming and hand-cultivated stevia, chilli, garlic and French beans in Mwea, Kenya, with solar-powered operations.">
+    <meta name="theme-color" content="#166534">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
@@ -25,6 +28,23 @@
         }
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
+        }
+        .text-clay-500 { color: var(--clay-500); }
+        .text-solar-500 { color: var(--solar-500); }
+        .from-bone-100 { --tw-gradient-from: var(--bone-100); --tw-gradient-to: transparent; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        [hidden] { display: none !important; }
+        section[id] { scroll-margin-top: 6rem; }
+        :focus-visible { outline: 3px solid #eab308; outline-offset: 4px; }
+        .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 100; padding: 1rem; background: white; }
+        .skip-link:focus { top: 1rem; }
+        .solar-ring { width: min(220px, 100%); aspect-ratio: 1; border: 30px solid var(--solar-500); border-radius: 50%; display: grid; place-content: center; margin: auto; text-align: center; }
+        @media (max-width: 639px) {
+            #contact > div > div { padding: 2rem 1.25rem; border-radius: 2rem; }
+            #contact .contact-location { flex-wrap: wrap; gap: .5rem; }
+            footer .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
         }
         .chart-container {
             position: relative;
@@ -53,7 +73,8 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 px-6 py-4">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <nav aria-label="Main navigation" id="navbar" class="fixed w-full z-50 transition-all duration-300 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-8 h-8 bg-emerald-800 rounded-full flex items-center justify-center text-white font-bold">T</div>
@@ -65,11 +86,18 @@
                 <a href="#sustainability" class="hover:text-emerald-700 transition">Sustainability</a>
                 <a href="#contact" class="bg-emerald-800 text-white px-5 py-2 rounded-full hover:bg-emerald-700 transition">Contact</a>
             </div>
-            <button class="md:hidden text-emerald-900" id="mobile-menu-btn">
+            <button class="md:hidden text-emerald-900" id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span class="text-2xl">☰</span>
             </button>
         </div>
+        <div id="mobile-menu" hidden class="md:hidden bg-white rounded-xl mt-4 p-4 shadow-lg space-y-4">
+            <a class="block py-2" href="#about">About Us</a>
+            <a class="block py-2" href="#capabilities">Capabilities</a>
+            <a class="block py-2" href="#sustainability">Sustainability</a>
+            <a class="block py-2" href="#contact">Contact</a>
+        </div>
     </nav>
+    <main id="main-content" tabindex="-1">
 
     <section class="relative min-h-screen flex items-center pt-20">
         <div class="absolute inset-0 z-0 overflow-hidden">
@@ -85,7 +113,7 @@
         <div class="relative z-20 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2">
             <div class="space-y-8">
                 <span class="inline-block px-4 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase tracking-widest">Now Accepting 2026 Contracts</span>
-                <h1 class="text-5xl md:text-7xl leading-tight text-emerald-900">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl leading-tight text-emerald-900">
                     Sun-Powered. <br>
                     <span class="italic text-clay-500">Hand-Cultivated.</span><br>
                     Grown to Specification.
@@ -148,12 +176,12 @@
                 <div class="w-full lg:w-1/2 space-y-8">
                     <h2 class="text-4xl md:text-5xl text-emerald-900 leading-tight">Precision Care Through <br>Human Touch.</h2>
                     
-                    <div class="flex space-x-6 border-b border-stone-200">
-                        <button onclick="switchTab('philosophy')" id="tab-philosophy" class="pb-4 text-sm font-bold uppercase tracking-widest tab-active">Philosophy</button>
-                        <button onclick="switchTab('methods')" id="tab-methods" class="pb-4 text-sm font-bold uppercase tracking-widest text-stone-400">Methods</button>
+                    <div role="tablist" aria-label="Our approach" class="flex space-x-6 border-b border-stone-200">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="content-philosophy" tabindex="0" id="tab-philosophy" class="pb-4 text-sm font-bold uppercase tracking-widest tab-active">Philosophy</button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="content-methods" tabindex="-1" id="tab-methods" class="pb-4 text-sm font-bold uppercase tracking-widest text-stone-400">Methods</button>
                     </div>
 
-                    <div id="content-philosophy" class="space-y-6">
+                    <div id="content-philosophy" role="tabpanel" aria-labelledby="tab-philosophy" tabindex="0" class="space-y-6">
                         <p class="text-lg leading-relaxed text-stone-700">
                             Great agriculture isn't just about volume; it's about attention to detail. Founded in the fertile soils of Mwea, we believe that the highest quality crops require a bespoke approach.
                         </p>
@@ -162,9 +190,10 @@
                         </p>
                     </div>
 
-                    <div id="content-methods" class="hidden space-y-6">
+                    <div id="content-methods" role="tabpanel" aria-labelledby="tab-methods" tabindex="0" hidden class="hidden space-y-6">
                         <p class="text-lg leading-relaxed text-stone-700">
-                            Our 'hand picked' approach is a deliberate quality choice allowing for highly selective harvesting which ensures that the harvest of each plant happens at its peak potency. 
+                            Our 'hand picked' approach is a deliberate quality choice allowing for highly selective harvesting which ensures that the harvest of each plant happens at its peak potency.
+                        </p>
                         <ul class="space-y-3">
                             <li class="flex items-center space-x-3">
                                 <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
@@ -265,8 +294,9 @@
                         <span>⚡</span>
                         <span>Energy Infrastructure Profile</span>
                     </h3>
-                    <div class="chart-container">
-                        <canvas id="energyChart"></canvas>
+                    <div class="solar-ring">
+                        <strong class="text-4xl">100%</strong>
+                        <span>Solar power</span>
                     </div>
                     <p class="mt-6 text-sm text-emerald-200/60 italic text-center">We utilize a 100% off-grid solar array for all irrigation and processing needs.</p>
                 </div>
@@ -359,11 +389,9 @@
                     Whether you are looking for bulk premium stevia or have a specific crop you need contract-grown, our team in Mwea is ready to deliver.
                 </p>
                 <div class="pt-8">
-                    <button class="bg-emerald-800 text-white px-12 py-5 rounded-full text-xl font-bold hover:bg-emerald-700 transition shadow-xl shadow-emerald-900/20">
-                        Contact Our Agronomy Team
-                    </button>
+                    <p class="text-stone-600">Contact details will be added here when available.</p>
                 </div>
-                <div class="pt-8 text-stone-400 text-sm flex justify-center items-center space-x-6">
+                <div class="contact-location pt-8 text-stone-500 text-sm flex justify-center items-center space-x-6">
                     <span>Mwea, Kenya</span>
                     <span>•</span>
                     <span>Solar-Powered Operations</span>
@@ -372,82 +400,19 @@
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="py-12 border-t border-stone-200 text-stone-500 text-sm">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p>&copy; 2024 Taji Glen Farms Operations. All rights reserved.</p>
-            <div class="flex space-x-8">
-                <a href="#" class="hover:text-emerald-900">Privacy Policy</a>
-                <a href="#" class="hover:text-emerald-900">Supply Chain Ethics</a>
-                <a href="#" class="hover:text-emerald-900">Certifications</a>
+            <p>&copy; <span id="copyright-year">2026</span> Taji Glen Farms Operations. All rights reserved.</p>
+            <div class="footer-links flex space-x-8">
+                <span>Privacy Policy — not yet available</span>
+                <span>Supply Chain Ethics — not yet available</span>
+                <span>Certifications — not yet available</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        window.onscroll = function() {
-            const nav = document.getElementById('navbar');
-            if (window.pageYOffset > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
-        };
-
-        // Tab Switching Logic
-        function switchTab(tab) {
-            const philTab = document.getElementById('tab-philosophy');
-            const methTab = document.getElementById('tab-methods');
-            const philContent = document.getElementById('content-philosophy');
-            const methContent = document.getElementById('content-methods');
-
-            if (tab === 'philosophy') {
-                philTab.classList.add('tab-active');
-                philTab.classList.remove('text-stone-400');
-                methTab.classList.remove('tab-active');
-                methTab.classList.add('text-stone-400');
-                philContent.classList.remove('hidden');
-                methContent.classList.add('hidden');
-            } else {
-                methTab.classList.add('tab-active');
-                methTab.classList.remove('text-stone-400');
-                philTab.classList.remove('tab-active');
-                philTab.classList.add('text-stone-400');
-                methContent.classList.remove('hidden');
-                philContent.classList.add('hidden');
-            }
-        }
-
-        // Charts Initialization
-        function initCharts() {
-            const ctxEnergy = document.getElementById('energyChart').getContext('2d');
-            new Chart(ctxEnergy, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Solar Power', 'Grid / Fossil Fuel'],
-                    datasets: [{
-                        data: [100, 0],
-                        backgroundColor: ['#eab308', '#2d241c'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: { color: '#ffffff', padding: 20 }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Initialize on load
-        window.addEventListener('load', initCharts);
-    </script>
+    <script src="./site.js" defer></script>
 </body>
 </html>
